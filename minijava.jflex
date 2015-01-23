@@ -5,34 +5,23 @@ import java_cup.runtime.*;
  * This class is a simple example lexer.
  */
 %%
+%public
 %class Lexer
+%type Void
 %unicode
-%cup
 %line
 %column
 %{
-  StringBuffer string = new StringBuffer();
-
-  private Symbol symbol(int type) {
-    return new Symbol(type, yyline, yycolumn);
-  }
-  private Symbol symbol(int type, Object value) {
-    return new Symbol(type, yyline, yycolumn, value);
-  }
+  StringBuffer string = new StringBuffer("hi");
 %}
-
+%eof{
+  System.out.println(string);
+%eof}
 LineTerminator = \r|\n|\r\n
 InputCharacter = [^\r\n]
 WhiteSpace     = {LineTerminator} | [ \t\f]
 
-/* comments */
-Comment = {TraditionalComment} | {EndOfLineComment} | {DocumentationComment}
-
-TraditionalComment   = "/*" [^*] ~"*/" | "/*" "*"+ "/"
-// Comment can be the last line of the file, without line terminator.
-EndOfLineComment     = "//" {InputCharacter}* {LineTerminator}?
-DocumentationComment = "/**" {CommentContent} "*"+ "/"
-CommentContent       = ( [^*] | \*+ [^/*] )*
+Comment   = "/*" [^*] ~"*/" | "/*" "*"+ "/"
 
 Identifier = [:jletter:] [:jletterdigit:]*
 IntegerLiteral = 0 | [1-9][0-9]*
@@ -41,11 +30,13 @@ BinaryOp = "&&" | "<" | "+" | "-" | "*"
 %state STRING
 
 %%
- /* keywords */
-<YYINITIAL> "abstract"           { return symbol(sym.ABSTRACT); }
-<YYINITIAL> "boolean"            { return symbol(sym.BOOLEAN); }
-<YYINITIAL> "break"              { return symbol(sym.BREAK); }
+{WhiteSpace}		{string.append(yytext());}
+{InputCharacter}	{string.append(yytext());}
+  /*
 <YYINITIAL> {
+  {InputCharacter}		{string.append(yytext());} 
+  /* keywords */
+  
   /* identifiers */ 
   {Identifier}                   { return symbol(sym.IDENTIFIER); }
  
@@ -64,6 +55,21 @@ BinaryOp = "&&" | "<" | "+" | "-" | "*"
   /* whitespace */
   {WhiteSpace}                   { /* ignore */ }
 }
+  */
  /* error fallback */
 [^]                              { throw new Error("Illegal character <"+
                                                     yytext()+">"); }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
