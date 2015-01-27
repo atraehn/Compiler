@@ -32,18 +32,27 @@ BinaryOp = "&&" | "<" | "+" | "-" | "*"
 
 %%
 
+
 {WhiteSpace}		{	/*consume*/}
 
-
-"{"			{	string.append(" {\n");
-				indent++;}
-
-{LineTerminator}	{	for(int i =0; i<indent; i++){
-				string.append("\t");
+";"			{	string.append(";\n");
+				for(int i =0; i<indent; i++){
+					string.append("\t");
 				}}
 
+"{"			{	indent++;
+				string.append(" {\n");
+				for(int i =0; i<indent; i++){
+                                        string.append("\t");
+                                }}
 
-{InputCharacter}	{string.append(yytext());}
+"}"			{	indent--;
+				if(string.charAt(string.length()-1) == '\t')
+					string.deleteCharAt(string.length()-1);
+				string.append("}\n");}
+
+
+{InputCharacter}	{	string.append(yytext());}
 
 
  /* error fallback */
