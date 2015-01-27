@@ -12,7 +12,8 @@ import java_cup.runtime.*;
 %line
 %column
 %{
-  StringBuffer string = new StringBuffer("hi");
+  int indent = 0;
+  StringBuffer string = new StringBuffer();
 %}
 %eof{
   System.out.println(string);
@@ -23,39 +24,28 @@ WhiteSpace     = {LineTerminator} | [ \t\f]
 
 Comment   = "/*" [^*] ~"*/" | "/*" "*"+ "/"
 
-Identifier = [:jletter:] [:jletterdigit:]*
+Identifier = [_a-zA-Z] [_a-zA-Z0-9]*
 IntegerLiteral = 0 | [1-9][0-9]*
 BinaryOp = "&&" | "<" | "+" | "-" | "*"
 
 %state STRING
 
 %%
-{WhiteSpace}		{string.append(yytext());}
+
+{WhiteSpace}		{	/*consume*/}
+
+
+"{"			{	string.append(" {\n");
+				indent++;}
+
+{LineTerminator}	{	for(int i =0; i<indent; i++){
+				string.append("\t");
+				}}
+
+
 {InputCharacter}	{string.append(yytext());}
-  /*
-<YYINITIAL> {
-  {InputCharacter}		{string.append(yytext());} 
-  /* keywords */
-  
-  /* identifiers */ 
-  {Identifier}                   { return symbol(sym.IDENTIFIER); }
- 
-  /* literals */
-  {IntegerLiteral}            { return symbol(sym.INTEGER_LITERAL); }
-  \"                             { string.setLength(0); yybegin(STRING); }
 
-  /* operators */
-  "="                            { return symbol(sym.EQ); }
-  "=="                           { return symbol(sym.EQEQ); }
-  "+"                            { return symbol(sym.PLUS); }
 
-  /* comments */
-  {Comment}                      { /* ignore */ }
- 
-  /* whitespace */
-  {WhiteSpace}                   { /* ignore */ }
-}
-  */
  /* error fallback */
 [^]                              { throw new Error("Illegal character <"+
                                                     yytext()+">"); }
