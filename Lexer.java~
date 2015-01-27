@@ -17,7 +17,6 @@ public class Lexer {
 
   /** lexical states */
   public static final int YYINITIAL = 0;
-  public static final int STRING = 2;
 
   /**
    * ZZ_LEXSTATE[l] is the state in the DFA for the lexical state l
@@ -26,17 +25,20 @@ public class Lexer {
    * l is of the form l = 2*k, k a non negative integer
    */
   private static final int ZZ_LEXSTATE[] = { 
-     0,  0,  0, 0
+     0, 0
   };
 
   /** 
    * Translates characters to character classes
    */
   private static final String ZZ_CMAP_PACKED = 
-    "\11\0\1\3\1\2\1\0\1\3\1\1\22\0\1\3\5\0\1\0"+
-    "\3\0\1\0\1\0\1\0\1\0\1\0\1\0\1\0\11\0\1\0"+
-    "\1\4\1\0\4\0\32\0\4\0\1\0\1\0\32\0\1\5\1\0"+
-    "\1\6\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uff92\0";
+    "\11\0\1\3\1\2\1\0\1\3\1\1\22\0\1\3\5\0\1\11"+
+    "\1\0\1\36\1\37\1\5\1\12\1\0\1\12\1\30\1\4\1\10"+
+    "\11\7\1\0\1\31\1\12\1\12\3\0\22\6\1\26\7\6\1\34"+
+    "\1\0\1\35\1\0\1\6\1\0\1\6\1\6\1\6\1\6\1\24"+
+    "\1\6\1\6\1\6\1\17\2\6\1\13\1\22\1\23\1\21\1\15"+
+    "\1\6\1\25\1\14\1\20\1\16\1\6\1\6\1\6\1\27\1\6"+
+    "\1\32\1\0\1\33\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uff92\0";
 
   /** 
    * Translates characters to character classes
@@ -49,10 +51,13 @@ public class Lexer {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\2\2\1\3\1\4\1\5";
+    "\1\0\1\1\2\2\1\1\3\3\1\1\2\3\1\4"+
+    "\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\2"+
+    "\1\0\2\3\2\0\2\3\1\0\1\14\1\3\1\14"+
+    "\1\0\2\3\13\0";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[7];
+    int [] result = new int[45];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -77,10 +82,15 @@ public class Lexer {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\7\0\16\0\7\0\7\0\7\0\7";
+    "\0\0\0\40\0\100\0\40\0\140\0\40\0\200\0\240"+
+    "\0\300\0\340\0\u0100\0\40\0\40\0\40\0\40\0\40"+
+    "\0\40\0\40\0\40\0\u0120\0\u0140\0\u0160\0\u0180\0\u01a0"+
+    "\0\u01c0\0\u01e0\0\u0200\0\u0220\0\u0240\0\u0260\0\u0280\0\u0280"+
+    "\0\u02a0\0\u02c0\0\u02e0\0\u0300\0\u0320\0\u0340\0\u0360\0\u0380"+
+    "\0\u03a0\0\u03c0\0\u03e0\0\u0400\0\u0420";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[7];
+    int [] result = new int[45];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -103,11 +113,26 @@ public class Lexer {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\1\3\2\4\1\5\1\6\1\7\11\0\1\4"+
-    "\4\0";
+    "\1\2\1\3\2\4\1\5\1\6\1\7\1\10\1\6"+
+    "\1\11\1\6\11\7\1\12\1\7\1\13\1\7\1\14"+
+    "\1\15\1\16\1\17\1\20\1\21\1\22\1\23\42\0"+
+    "\1\4\41\0\1\24\1\25\40\0\3\7\2\0\15\7"+
+    "\17\0\2\10\40\0\1\6\34\0\3\7\2\0\1\26"+
+    "\14\7\16\0\3\7\2\0\14\7\1\27\10\0\1\24"+
+    "\1\3\1\4\35\24\5\30\1\31\32\30\6\0\3\7"+
+    "\2\0\1\7\1\32\13\7\16\0\3\7\2\0\1\7"+
+    "\1\33\13\7\10\0\5\30\1\34\32\30\4\0\1\4"+
+    "\1\31\40\0\3\7\2\0\11\7\1\35\3\7\16\0"+
+    "\3\7\2\0\5\7\1\36\7\7\10\0\4\30\1\4"+
+    "\1\34\32\30\32\37\1\40\5\37\6\0\3\7\2\0"+
+    "\11\7\1\41\3\7\10\0\40\37\6\0\3\7\2\0"+
+    "\7\7\1\42\5\7\16\0\3\7\2\0\15\7\1\43"+
+    "\30\0\1\44\34\0\1\45\41\0\1\46\47\0\1\47"+
+    "\24\0\1\50\47\0\1\51\31\0\1\52\43\0\1\53"+
+    "\34\0\1\54\32\0\1\55\47\0\1\6\14\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[21];
+    int [] result = new int[1088];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -145,10 +170,12 @@ public class Lexer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11\1\1\4\11";
+    "\1\0\1\11\1\1\1\11\1\1\1\11\5\1\10\11"+
+    "\1\1\1\0\2\1\2\0\2\1\1\0\3\1\1\0"+
+    "\2\1\13\0";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[7];
+    int [] result = new int[45];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -248,7 +275,7 @@ public class Lexer {
     char [] map = new char[0x110000];
     int i = 0;  /* index in packed string  */
     int j = 0;  /* index in unpacked array */
-    while (i < 96) {
+    while (i < 160) {
       int  count = packed.charAt(i++);
       char value = packed.charAt(i++);
       do map[j++] = value; while (--count > 0);
@@ -608,36 +635,92 @@ public class Lexer {
         case 1: 
           { string.append(yytext());
           }
-        case 6: break;
+        case 13: break;
         case 2: 
           { /*consume*/
           }
-        case 7: break;
+        case 14: break;
         case 3: 
-          { string.append(";\n");
+          { string.append(yytext()+" ");
+          }
+        case 15: break;
+        case 4: 
+          { if(string.charAt(string.length()-1) == ' ')
+                                        string.deleteCharAt(string.length()-1);
+				string.append(".");
+          }
+        case 16: break;
+        case 5: 
+          { if(string.charAt(string.length()-1) == ' ')
+                                        string.deleteCharAt(string.length()-1);
+				string.append(";\n");
 				for(int i =0; i<indent; i++){
 					string.append("\t");
 				}
           }
-        case 8: break;
-        case 4: 
+        case 17: break;
+        case 6: 
           { indent++;
+				if(string.charAt(string.length()-1) == ' ')
+                                        string.deleteCharAt(string.length()-1);
 				string.append(" {\n");
 				for(int i =0; i<indent; i++){
                                         string.append("\t");
                                 }
           }
-        case 9: break;
-        case 5: 
+        case 18: break;
+        case 7: 
           { indent--;
-				/*for(int i =0; i<indent; i++){
-                                        string.append("\t");
-                                }*/
-				if(string.charAt(string.length()) == '\t')
-					string.deleteCharAt(string.length());
+				if(string.charAt(string.length()-1) == '\t')
+					string.deleteCharAt(string.length()-1);
 				string.append("}\n");
           }
-        case 10: break;
+        case 19: break;
+        case 8: 
+          { if(string.charAt(string.length()-1) == ' ')
+                                        string.deleteCharAt(string.length()-1);
+				string.append("[ ");
+          }
+        case 20: break;
+        case 9: 
+          { if(string.charAt(string.length()-1) == ' ')
+                                        string.deleteCharAt(string.length()-1);
+                                if(string.charAt(string.length()-1) == '[')
+					string.append("]");
+				else
+					string.append(" ]");
+          }
+        case 21: break;
+        case 10: 
+          { if(string.charAt(string.length()-1) == ' ')
+                                        string.deleteCharAt(string.length()-1);
+				if(string.charAt(string.length()-1) == '&' ||
+				   string.charAt(string.length()-1) == '<' ||
+				   string.charAt(string.length()-1) == '+' ||
+                                   string.charAt(string.length()-1) == '-' ||
+                                   string.charAt(string.length()-1) == '*')
+					string.append(" ( ");
+				else
+					string.append("( ");
+          }
+        case 22: break;
+        case 11: 
+          { if(string.charAt(string.length()-1) == ' ')
+                                        string.deleteCharAt(string.length()-1);
+                                if(string.charAt(string.length()-1) == '(')
+                                        string.append(")");
+				else
+					string.append(" )");
+          }
+        case 23: break;
+        case 12: 
+          // lookahead expression with fixed base length
+          zzMarkedPos = Character.offsetByCodePoints
+              (zzBufferL, zzStartRead, zzEndRead - zzStartRead, zzStartRead, 4);
+          { indent++;
+				string.append("else\n");
+          }
+        case 24: break;
         default: 
           if (zzInput == YYEOF && zzStartRead == zzCurrentPos) {
             zzAtEOF = true;
