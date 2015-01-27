@@ -2,7 +2,7 @@
 
 /* JFlex example: part of Java language lexer specification */
 import java_cup.runtime.*;
-
+import java.util.*;
 /**
  * This class is a simple example lexer.
  */
@@ -32,13 +32,13 @@ public class Lexer {
    * Translates characters to character classes
    */
   private static final String ZZ_CMAP_PACKED = 
-    "\11\0\1\3\1\2\1\0\1\3\1\1\22\0\1\3\5\0\1\11"+
-    "\1\0\1\36\1\37\1\5\1\12\1\0\1\12\1\30\1\4\1\10"+
-    "\11\7\1\0\1\31\1\12\1\12\3\0\22\6\1\26\7\6\1\34"+
-    "\1\0\1\35\1\0\1\6\1\0\1\6\1\6\1\6\1\6\1\24"+
-    "\1\6\1\6\1\6\1\17\2\6\1\13\1\22\1\23\1\21\1\15"+
-    "\1\6\1\25\1\14\1\20\1\16\1\6\1\6\1\6\1\27\1\6"+
-    "\1\32\1\0\1\33\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uff92\0";
+    "\11\0\1\3\1\2\1\0\1\3\1\1\22\0\1\3\5\0\1\15"+
+    "\1\0\1\10\1\11\1\5\1\16\1\0\1\16\1\43\1\4\1\14"+
+    "\11\13\1\0\1\45\1\16\1\16\3\0\22\12\1\41\7\12\1\50"+
+    "\1\0\1\51\1\0\1\12\1\0\1\21\1\25\1\17\1\31\1\34"+
+    "\1\7\1\44\1\40\1\6\2\12\1\20\1\32\1\33\1\30\1\23"+
+    "\1\12\1\36\1\22\1\26\1\24\1\27\1\37\1\35\1\42\1\12"+
+    "\1\46\1\0\1\47\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uff92\0";
 
   /** 
    * Translates characters to character classes
@@ -51,13 +51,15 @@ public class Lexer {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\2\2\1\1\3\3\1\1\2\3\1\4"+
-    "\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\2"+
-    "\1\0\2\3\2\0\2\3\1\0\1\14\1\3\1\14"+
-    "\1\0\2\3\13\0";
+    "\3\0\1\1\2\2\1\1\1\3\2\4\1\5\1\6"+
+    "\1\4\1\3\1\1\15\4\1\7\1\10\1\11\1\12"+
+    "\1\13\1\14\3\0\1\2\1\0\22\4\5\0\1\3"+
+    "\17\4\2\0\1\15\1\16\4\4\1\17\4\4\1\0"+
+    "\1\16\1\0\3\4\1\17\1\0\6\4\1\0\1\4"+
+    "\12\0";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[45];
+    int [] result = new int[117];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -82,15 +84,24 @@ public class Lexer {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\40\0\100\0\40\0\140\0\40\0\200\0\240"+
-    "\0\300\0\340\0\u0100\0\40\0\40\0\40\0\40\0\40"+
-    "\0\40\0\40\0\40\0\u0120\0\u0140\0\u0160\0\u0180\0\u01a0"+
-    "\0\u01c0\0\u01e0\0\u0200\0\u0220\0\u0240\0\u0260\0\u0280\0\u0280"+
-    "\0\u02a0\0\u02c0\0\u02e0\0\u0300\0\u0320\0\u0340\0\u0360\0\u0380"+
-    "\0\u03a0\0\u03c0\0\u03e0\0\u0400\0\u0420";
+    "\0\0\0\52\0\124\0\176\0\250\0\176\0\322\0\176"+
+    "\0\374\0\u0126\0\176\0\176\0\u0150\0\u017a\0\u01a4\0\u01ce"+
+    "\0\u01f8\0\u0222\0\u024c\0\u0276\0\u02a0\0\u02ca\0\u02f4\0\u031e"+
+    "\0\u0348\0\u0372\0\u039c\0\u03c6\0\176\0\176\0\176\0\176"+
+    "\0\176\0\176\0\u03f0\0\u041a\0\u041a\0\u0444\0\u046e\0\u0498"+
+    "\0\u04c2\0\u04ec\0\u0516\0\u0540\0\u056a\0\u0594\0\u05be\0\u05e8"+
+    "\0\u0612\0\u063c\0\u0666\0\u0690\0\u06ba\0\u06e4\0\u070e\0\u0738"+
+    "\0\u0762\0\u078c\0\u07b6\0\u07e0\0\u080a\0\u0834\0\u0150\0\u085e"+
+    "\0\u0888\0\u08b2\0\u08dc\0\u0906\0\u0930\0\u095a\0\u0984\0\u09ae"+
+    "\0\u09d8\0\u0a02\0\u0a2c\0\u0a56\0\u0a80\0\u0aaa\0\u0ad4\0\u0afe"+
+    "\0\176\0\u0b28\0\u0b52\0\u0b7c\0\u0ba6\0\u0bd0\0\u0bfa\0\u0c24"+
+    "\0\u0c4e\0\u0c78\0\u0ca2\0\176\0\u0ccc\0\u0ccc\0\u0cf6\0\u0d20"+
+    "\0\u0d4a\0\u0d74\0\u0d74\0\u0d9e\0\u0dc8\0\u0df2\0\u0e1c\0\u0e46"+
+    "\0\u0e70\0\u0e9a\0\u0ec4\0\u0eee\0\u0f18\0\u0f42\0\u0f6c\0\u0f96"+
+    "\0\u0fc0\0\u0fea\0\u1014\0\u103e\0\u1068";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[45];
+    int [] result = new int[117];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -113,26 +124,108 @@ public class Lexer {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\1\3\2\4\1\5\1\6\1\7\1\10\1\6"+
-    "\1\11\1\6\11\7\1\12\1\7\1\13\1\7\1\14"+
-    "\1\15\1\16\1\17\1\20\1\21\1\22\1\23\42\0"+
-    "\1\4\41\0\1\24\1\25\40\0\3\7\2\0\15\7"+
-    "\17\0\2\10\40\0\1\6\34\0\3\7\2\0\1\26"+
-    "\14\7\16\0\3\7\2\0\14\7\1\27\10\0\1\24"+
-    "\1\3\1\4\35\24\5\30\1\31\32\30\6\0\3\7"+
-    "\2\0\1\7\1\32\13\7\16\0\3\7\2\0\1\7"+
-    "\1\33\13\7\10\0\5\30\1\34\32\30\4\0\1\4"+
-    "\1\31\40\0\3\7\2\0\11\7\1\35\3\7\16\0"+
-    "\3\7\2\0\5\7\1\36\7\7\10\0\4\30\1\4"+
-    "\1\34\32\30\32\37\1\40\5\37\6\0\3\7\2\0"+
-    "\11\7\1\41\3\7\10\0\40\37\6\0\3\7\2\0"+
-    "\7\7\1\42\5\7\16\0\3\7\2\0\15\7\1\43"+
-    "\30\0\1\44\34\0\1\45\41\0\1\46\47\0\1\47"+
-    "\24\0\1\50\47\0\1\51\31\0\1\52\43\0\1\53"+
-    "\34\0\1\54\32\0\1\55\47\0\1\6\14\0";
+    "\1\4\1\5\2\6\1\7\1\10\1\11\1\12\1\13"+
+    "\1\14\1\15\1\16\1\10\1\17\1\10\1\20\1\21"+
+    "\1\15\1\22\1\23\1\15\1\24\1\25\1\26\2\15"+
+    "\1\27\1\30\1\31\1\15\1\32\1\33\1\15\1\34"+
+    "\1\15\1\35\1\15\1\36\1\37\1\40\1\41\1\42"+
+    "\6\0\1\43\43\0\46\44\1\45\3\44\54\0\1\6"+
+    "\53\0\1\46\1\47\52\0\1\15\1\50\2\0\3\15"+
+    "\2\0\14\15\1\51\7\15\1\0\1\15\13\0\2\15"+
+    "\2\0\3\15\2\0\2\15\1\52\21\15\1\0\1\15"+
+    "\13\0\2\15\2\0\3\15\2\0\24\15\1\0\1\15"+
+    "\20\0\2\16\52\0\1\10\42\0\2\15\2\0\3\15"+
+    "\2\0\1\15\1\53\22\15\1\0\1\15\13\0\2\15"+
+    "\2\0\3\15\2\0\15\15\1\54\6\15\1\0\1\15"+
+    "\13\0\2\15\2\0\3\15\2\0\7\15\1\55\14\15"+
+    "\1\0\1\15\13\0\2\15\2\0\3\15\2\0\5\15"+
+    "\1\56\16\15\1\0\1\15\13\0\2\15\2\0\3\15"+
+    "\2\0\11\15\1\57\12\15\1\0\1\15\13\0\2\15"+
+    "\2\0\3\15\2\0\21\15\1\60\2\15\1\0\1\15"+
+    "\13\0\2\15\2\0\3\15\2\0\11\15\1\61\12\15"+
+    "\1\0\1\15\13\0\2\15\2\0\3\15\2\0\2\15"+
+    "\1\62\21\15\1\0\1\15\13\0\2\15\2\0\3\15"+
+    "\2\0\15\15\1\63\6\15\1\0\1\15\13\0\2\15"+
+    "\2\0\3\15\2\0\1\15\1\64\14\15\1\65\5\15"+
+    "\1\0\1\15\13\0\2\15\2\0\3\15\2\0\15\15"+
+    "\1\66\6\15\1\0\1\15\13\0\2\15\2\0\3\15"+
+    "\2\0\21\15\1\67\2\15\1\0\1\15\13\0\2\15"+
+    "\2\0\3\15\2\0\7\15\1\70\13\15\1\71\1\0"+
+    "\1\15\14\0\1\72\42\0\52\44\1\46\1\5\1\6"+
+    "\47\46\5\73\1\74\44\73\1\0\3\75\2\0\2\15"+
+    "\1\76\1\0\3\15\2\0\24\15\1\0\1\15\13\0"+
+    "\2\15\2\0\3\15\2\0\7\15\1\77\14\15\1\0"+
+    "\1\15\13\0\2\15\2\0\3\15\2\0\1\15\1\100"+
+    "\22\15\1\0\1\15\13\0\2\15\2\0\3\15\2\0"+
+    "\2\15\1\101\21\15\1\0\1\15\13\0\2\15\2\0"+
+    "\3\15\2\0\14\15\1\102\7\15\1\0\1\15\13\0"+
+    "\2\15\2\0\3\15\2\0\2\15\1\103\21\15\1\0"+
+    "\1\15\13\0\2\15\2\0\3\15\2\0\6\15\1\104"+
+    "\15\15\1\0\1\15\13\0\2\15\2\0\3\15\2\0"+
+    "\11\15\1\105\12\15\1\0\1\15\13\0\1\106\1\15"+
+    "\2\0\3\15\2\0\24\15\1\0\1\15\13\0\1\107"+
+    "\1\15\2\0\3\15\2\0\24\15\1\0\1\15\13\0"+
+    "\1\110\1\15\2\0\3\15\2\0\24\15\1\0\1\15"+
+    "\13\0\2\15\2\0\3\15\2\0\20\15\1\77\3\15"+
+    "\1\0\1\15\13\0\2\15\2\0\3\15\2\0\3\15"+
+    "\1\111\20\15\1\0\1\15\13\0\2\15\2\0\3\15"+
+    "\2\0\7\15\1\112\14\15\1\0\1\15\13\0\2\15"+
+    "\2\0\3\15\2\0\7\15\1\113\14\15\1\0\1\15"+
+    "\13\0\1\114\1\15\2\0\3\15\2\0\24\15\1\0"+
+    "\1\15\13\0\2\15\2\0\3\15\2\0\17\15\1\115"+
+    "\4\15\1\0\1\15\13\0\2\15\2\0\3\15\2\0"+
+    "\3\15\1\116\20\15\1\0\1\15\6\0\3\72\4\0"+
+    "\1\117\41\0\5\73\1\120\44\73\4\0\1\121\1\74"+
+    "\45\0\3\75\4\0\1\76\41\0\11\76\1\122\40\76"+
+    "\6\0\2\15\2\0\3\15\2\0\3\15\1\123\20\15"+
+    "\1\0\1\15\13\0\2\15\2\0\3\15\2\0\3\15"+
+    "\1\106\20\15\1\0\1\15\13\0\2\15\2\0\3\15"+
+    "\2\0\24\15\1\0\1\124\13\0\2\15\2\0\3\15"+
+    "\2\0\7\15\1\125\14\15\1\0\1\15\13\0\2\15"+
+    "\2\0\3\15\2\0\1\15\1\125\22\15\1\0\1\15"+
+    "\13\0\2\15\2\0\3\15\2\0\1\15\1\126\22\15"+
+    "\1\0\1\15\13\0\2\15\2\0\3\15\2\0\3\15"+
+    "\1\77\20\15\1\0\1\15\13\0\2\15\2\0\3\15"+
+    "\2\0\12\15\1\77\11\15\1\0\1\15\13\0\2\15"+
+    "\2\0\3\15\2\0\14\15\1\77\7\15\1\0\1\15"+
+    "\13\0\2\15\2\0\3\15\2\0\15\15\1\127\6\15"+
+    "\1\0\1\15\13\0\2\15\2\0\3\15\2\0\15\15"+
+    "\1\130\6\15\1\0\1\15\13\0\2\15\2\0\3\15"+
+    "\2\0\5\15\1\131\16\15\1\0\1\15\13\0\2\15"+
+    "\2\0\3\15\2\0\1\15\1\123\22\15\1\0\1\15"+
+    "\13\0\1\132\1\15\2\0\3\15\2\0\24\15\1\0"+
+    "\1\15\13\0\2\15\2\0\3\15\2\0\7\15\1\133"+
+    "\14\15\1\0\1\15\5\0\11\117\1\134\40\117\4\73"+
+    "\1\121\1\120\44\73\46\135\1\136\3\135\6\0\2\15"+
+    "\2\0\3\15\2\0\15\15\1\77\6\15\1\0\1\15"+
+    "\13\0\2\15\2\0\3\15\2\0\7\15\1\137\14\15"+
+    "\1\0\1\15\13\0\1\140\1\15\2\0\3\15\2\0"+
+    "\24\15\1\0\1\15\13\0\2\15\2\0\3\15\2\0"+
+    "\15\15\1\141\6\15\1\0\1\15\5\0\46\142\1\143"+
+    "\3\142\6\0\2\15\2\0\3\15\2\0\14\15\1\144"+
+    "\7\15\1\0\1\15\13\0\2\15\2\0\3\15\2\0"+
+    "\17\15\1\110\4\15\1\0\1\15\13\0\2\15\2\0"+
+    "\3\15\2\0\14\15\1\145\7\15\1\0\1\15\13\0"+
+    "\2\15\2\0\3\15\2\0\15\15\1\146\6\15\1\0"+
+    "\1\15\5\0\52\135\6\0\2\15\2\0\3\15\2\0"+
+    "\21\15\1\147\2\15\1\0\1\15\13\0\2\15\2\0"+
+    "\3\15\2\0\1\77\23\15\1\0\1\15\13\0\2\15"+
+    "\2\0\3\15\2\0\2\15\1\110\21\15\1\0\1\15"+
+    "\5\0\52\142\6\0\2\15\2\0\3\15\2\0\12\15"+
+    "\1\106\11\15\1\0\1\15\13\0\2\15\2\0\3\15"+
+    "\2\0\24\15\1\0\1\77\13\0\2\15\2\0\3\15"+
+    "\2\0\13\15\1\150\10\15\1\0\1\15\13\0\2\15"+
+    "\2\0\3\15\2\0\7\15\1\151\14\15\1\0\1\15"+
+    "\13\0\2\15\2\0\3\15\2\0\24\15\1\152\1\15"+
+    "\13\0\2\15\2\0\3\15\2\0\17\15\1\153\4\15"+
+    "\1\0\1\15\35\0\1\154\27\0\2\15\2\0\3\15"+
+    "\2\0\5\15\1\123\16\15\1\0\1\15\31\0\1\155"+
+    "\53\0\1\156\66\0\1\157\31\0\1\160\64\0\1\161"+
+    "\21\0\1\162\76\0\1\163\44\0\1\164\43\0\1\165"+
+    "\64\0\1\10\16\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[1088];
+    int [] result = new int[4242];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -170,12 +263,13 @@ public class Lexer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11\1\1\1\11\1\1\1\11\5\1\10\11"+
-    "\1\1\1\0\2\1\2\0\2\1\1\0\3\1\1\0"+
-    "\2\1\13\0";
+    "\2\0\1\1\1\11\1\1\1\11\1\1\1\11\2\1"+
+    "\2\11\20\1\6\11\1\0\1\1\1\0\1\1\1\0"+
+    "\22\1\5\0\20\1\2\0\1\11\12\1\1\11\1\1"+
+    "\1\0\4\1\1\0\6\1\1\0\1\1\12\0";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[45];
+    int [] result = new int[117];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -249,6 +343,9 @@ public class Lexer {
    * otherwise, it will have a value of 0.
    */
   private int zzFinalHighSurrogate = 0;
+
+  /** For the backwards DFA of general lookahead statements */
+  private boolean [] zzFin = new boolean [ZZ_BUFFERSIZE+1];
 
   /* user code: */
   int indent = 0;
@@ -635,63 +732,22 @@ public class Lexer {
         case 1: 
           { string.append(yytext());
           }
-        case 13: break;
+        case 16: break;
         case 2: 
           { /*consume*/
           }
-        case 14: break;
+        case 17: break;
         case 3: 
           { string.append(yytext()+" ");
           }
-        case 15: break;
-        case 4: 
-          { if(string.charAt(string.length()-1) == ' ')
-                                        string.deleteCharAt(string.length()-1);
-				string.append(".");
-          }
-        case 16: break;
-        case 5: 
-          { if(string.charAt(string.length()-1) == ' ')
-                                        string.deleteCharAt(string.length()-1);
-				string.append(";\n");
-				for(int i =0; i<indent; i++){
-					string.append("\t");
-				}
-          }
-        case 17: break;
-        case 6: 
-          { indent++;
-				if(string.charAt(string.length()-1) == ' ')
-                                        string.deleteCharAt(string.length()-1);
-				string.append(" {\n");
-				for(int i =0; i<indent; i++){
-                                        string.append("\t");
-                                }
-          }
         case 18: break;
-        case 7: 
-          { indent--;
-				if(string.charAt(string.length()-1) == '\t')
-					string.deleteCharAt(string.length()-1);
-				string.append("}\n");
+        case 4: 
+          { if(string.charAt(string.length()-1) != ' ')
+					string.append(" ");
+				string.append(yytext()+" ");
           }
         case 19: break;
-        case 8: 
-          { if(string.charAt(string.length()-1) == ' ')
-                                        string.deleteCharAt(string.length()-1);
-				string.append("[ ");
-          }
-        case 20: break;
-        case 9: 
-          { if(string.charAt(string.length()-1) == ' ')
-                                        string.deleteCharAt(string.length()-1);
-                                if(string.charAt(string.length()-1) == '[')
-					string.append("]");
-				else
-					string.append(" ]");
-          }
-        case 21: break;
-        case 10: 
+        case 5: 
           { if(string.charAt(string.length()-1) == ' ')
                                         string.deleteCharAt(string.length()-1);
 				if(string.charAt(string.length()-1) == '&' ||
@@ -703,8 +759,8 @@ public class Lexer {
 				else
 					string.append("( ");
           }
-        case 22: break;
-        case 11: 
+        case 20: break;
+        case 6: 
           { if(string.charAt(string.length()-1) == ' ')
                                         string.deleteCharAt(string.length()-1);
                                 if(string.charAt(string.length()-1) == '(')
@@ -712,17 +768,116 @@ public class Lexer {
 				else
 					string.append(" )");
           }
+        case 21: break;
+        case 7: 
+          { if(string.charAt(string.length()-1) == ' ')
+                                        string.deleteCharAt(string.length()-1);
+				string.append(".");
+          }
+        case 22: break;
+        case 8: 
+          { if(string.charAt(string.length()-1) == ' ')
+                                        string.deleteCharAt(string.length()-1);
+				string.append(";\n");
+				for(int i =0; i<indent; i++){
+					string.append("\t");
+				}
+          }
         case 23: break;
-        case 12: 
-          // lookahead expression with fixed base length
-          zzMarkedPos = Character.offsetByCodePoints
-              (zzBufferL, zzStartRead, zzEndRead - zzStartRead, zzStartRead, 4);
-          { string.append("else\n");
-				for(int i =0; i<indent+1; i++){
+        case 9: 
+          { indent++;
+				if(string.charAt(string.length()-1) == ' ')
+                                        string.deleteCharAt(string.length()-1);
+				string.append(" {\n");
+				for(int i =0; i<indent; i++){
                                         string.append("\t");
                                 }
           }
         case 24: break;
+        case 10: 
+          { indent--;
+				if(string.charAt(string.length()-1) == '\t')
+					string.deleteCharAt(string.length()-1);
+				string.append("}\n");
+          }
+        case 25: break;
+        case 11: 
+          { if(string.charAt(string.length()-1) == ' ')
+                                        string.deleteCharAt(string.length()-1);
+				string.append("[ ");
+          }
+        case 26: break;
+        case 12: 
+          { if(string.charAt(string.length()-1) == ' ')
+                                        string.deleteCharAt(string.length()-1);
+                                if(string.charAt(string.length()-1) == '[')
+					string.append("]");
+				else
+					string.append(" ]");
+          }
+        case 27: break;
+        case 13: 
+          { /* \t == 8 cols but jflex reads as 1 col
+				   I'm going to calculate as 8 cols to
+				   keep max width at 80 cols		*/
+				int maxcols = 80-indent*8;
+				int remainder = yytext().length()%maxcols;
+				for(int i=0; i<=yytext().length()/maxcols; i++){
+					String s = "";
+					if(i<yytext().length()/maxcols)
+						s = yytext().substring(i*maxcols,i*maxcols+maxcols);
+					else
+						s = yytext().substring(i*maxcols,i*maxcols+remainder);
+					string.append(s+"\n");
+					for(int j =0; j<indent; j++){
+                                        	string.append("\t");
+                                	}
+				}
+				//string.append(maxcols+"\n"+remainder+"\n");
+          }
+        case 28: break;
+        case 14: 
+          // general lookahead, find correct zzMarkedPos
+          { int zzFState = 1;
+            int zzFPos = zzStartRead;
+            if (zzFin.length <= zzBufferL.length) { zzFin = new boolean[zzBufferL.length+1]; }
+            boolean zzFinL[] = zzFin;
+            while (zzFState != -1 && zzFPos < zzMarkedPos) {
+              zzFinL[zzFPos] = ((zzAttrL[zzFState] & 1) == 1);
+              zzInput = Character.codePointAt(zzBufferL, zzFPos, zzMarkedPos);
+              zzFPos += Character.charCount(zzInput);
+              zzFState = zzTransL[ zzRowMapL[zzFState] + zzCMapL[zzInput] ];
+            }
+            if (zzFState != -1) { zzFinL[zzFPos++] = ((zzAttrL[zzFState] & 1) == 1); } 
+            while (zzFPos <= zzMarkedPos) {
+              zzFinL[zzFPos++] = false;
+            }
+
+            zzFState = 2;
+            zzFPos = zzMarkedPos;
+            while (!zzFinL[zzFPos] || (zzAttrL[zzFState] & 1) != 1) {
+              zzInput = Character.codePointBefore(zzBufferL, zzFPos, zzStartRead);
+              zzFPos -= Character.charCount(zzInput);
+              zzFState = zzTransL[ zzRowMapL[zzFState] + zzCMapL[zzInput] ];
+            };
+            zzMarkedPos = zzFPos;
+          }
+          { string.append(yytext()+"\n");
+					for(int i =0; i<indent+1; i++){
+                                                string.append("\t");
+                                        }
+          }
+        case 29: break;
+        case 15: 
+          // lookahead expression with fixed base length
+          zzMarkedPos = Character.offsetByCodePoints
+              (zzBufferL, zzStartRead, zzEndRead - zzStartRead, zzStartRead, 4);
+          { string.append("else\n");
+					for(int i =0; i<indent+1; i++){
+                                        	string.append("\t");
+                                	}
+          }
+        case 30: break;
         default: 
           if (zzInput == YYEOF && zzStartRead == zzCurrentPos) {
             zzAtEOF = true;
